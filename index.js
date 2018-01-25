@@ -1,6 +1,8 @@
 
 const round = require('round')
 
+const REPS_KEY = 'quench.reps'
+
 let cache = JSON.parse(localStorage.getItem('quench')) || {}
 let active = 0
 
@@ -8,6 +10,17 @@ window.quench = exports
 
 exports.keys = function() {
   return Object.keys(cache)
+}
+
+exports.repeat = function(max, delay = 1000) {
+  let reps = localStorage.getItem(REPS_KEY)
+  if (reps == 0) {
+    localStorage.removeItem(REPS_KEY)
+  } else {
+    reps = (reps || max) - 1
+    localStorage.setItem(REPS_KEY, reps)
+    setTimeout(() => location.reload(), delay)
+  }
 }
 
 exports.bench = function(id) {
