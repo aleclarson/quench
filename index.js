@@ -1,9 +1,8 @@
 
 const round = require('round')
 
+let cache = JSON.parse(localStorage.getItem('quench')) || {}
 let active = 0
-
-const cache = JSON.parse(localStorage.getItem('quench')) || {}
 
 window.quench = exports
 
@@ -38,8 +37,13 @@ exports.mean = function(id) {
 }
 
 exports.clear = function(id) {
-  delete cache[id]
-  save()
+  if (arguments.length == 0) {
+    cache = {}
+    localStorage.removeItem('quench')
+  } else {
+    delete cache[id]
+    save()
+  }
 }
 
 function save() {
