@@ -13,6 +13,10 @@ exports.keys = function() {
   return Object.keys(cache)
 }
 
+exports.read = function(id) {
+  return cache[id].slice()
+}
+
 exports.repeat = function(max, delay = 1000) {
   let reps = localStorage.getItem(REPS_KEY)
   if (reps == 0) {
