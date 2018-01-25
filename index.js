@@ -1,9 +1,10 @@
 
 const round = require('round')
 
+const CACHE_KEY = 'quench'
 const REPS_KEY = 'quench.reps'
 
-let cache = JSON.parse(localStorage.getItem('quench')) || {}
+let cache = JSON.parse(localStorage.getItem(CACHE_KEY)) || {}
 let active = 0
 
 window.quench = exports
@@ -56,7 +57,7 @@ exports.mean = function(id) {
 exports.clear = function(id) {
   if (arguments.length == 0) {
     cache = {}
-    localStorage.removeItem('quench')
+    localStorage.removeItem(CACHE_KEY)
   } else {
     delete cache[id]
     save()
@@ -64,6 +65,6 @@ exports.clear = function(id) {
 }
 
 function save() {
-  localStorage.setItem('quench', JSON.stringify(cache))
+  localStorage.setItem(CACHE_KEY, JSON.stringify(cache))
 }
 
