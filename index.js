@@ -6,6 +6,10 @@ let active = 0
 
 window.quench = exports
 
+exports.keys = function() {
+  return Object.keys(cache)
+}
+
 exports.bench = function(id) {
   const start = performance.now()
   active += 1
