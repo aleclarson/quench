@@ -49,13 +49,13 @@ exports.median = function(id) {
     return times[i]
   }
   const i = times.length / 2
-  return (times[i - 1] + times[i]) / 2
+  return round((times[i - 1] + times[i]) / 2, 2)
 }
 
 exports.mean = function(id) {
   let sum = 0
   cache[id].forEach(time => (sum += time))
-  return sum / cache[id].length
+  return round(sum / cache[id].length, 2)
 }
 
 exports.clear = function(id) {
