@@ -1,4 +1,6 @@
 
+const round = require('round')
+
 let active = 0
 
 const cache = JSON.parse(localStorage.getItem('quench')) || {}
@@ -9,7 +11,7 @@ exports.bench = function(id) {
   const start = performance.now()
   active += 1
   return function done() {
-    const elapsed = performance.now() - start
+    const elapsed = round(performance.now() - start, 2)
     const times = cache[id] || []
     times.push(elapsed)
     cache[id] = times
